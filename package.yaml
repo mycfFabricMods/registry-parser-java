@@ -1,0 +1,90 @@
+version:             0.1.0.0
+author:              "java-item-file-parser"
+github:              "0xmycf/java-item-file-parser"
+license:             "CCBYNCSA-4.0"
+synopsis:            "parses a minecraft java registry class and returns a rewrite using a hashmap"
+copyright:           "2022 0xmycf"
+homepage:            https://github.com/0xmycf/java-item-file-parser#readme
+
+extra-source-files:
+- README.md          
+
+default-extensions:
+  - TypeOperators
+  - DerivingStrategies
+  - DeriveFunctor
+  - DeriveFoldable
+  - DeriveGeneric
+  - DeriveTraversable
+  - ExplicitNamespaces
+  - FlexibleContexts
+  - LambdaCase
+  - TupleSections
+  - BlockArguments
+  - ScopedTypeVariables
+  - MultiWayIf 
+  - EmptyDataDecls
+  - FlexibleInstances
+  - BangPatterns
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - RankNTypes
+  - MultiParamTypeClasses
+
+description:         Please see the README on GitHub at <https://github.com/0xmycf/java-item-file-parser#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- matrix
+- containers
+- parsec
+- linear
+- finitary
+- finite
+- vector
+- text
+- split
+- lens
+
+ghc-options:
+- -Wall
+
+library:
+  source-dirs: src
+  dependencies:
+  - directory
+
+executables:
+  java-item-file-parser-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+    dependencies:
+    - java-item-file-parser
+
+tests:
+  java-item-file-parser-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - java-item-file-parser
+    - hspec
+    - QuickCheck
+
+benchmarks:
+  java-item-file-parser-bench:
+    main:                Bench.hs
+    source-dirs:         bench
+    ghc-options:
+    - -O2
+    dependencies:
+    - java-item-file-parser
+    - criterion

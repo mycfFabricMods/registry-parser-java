@@ -1,0 +1,19 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "java-item-file-parser:lib"
+
+    - path: "./app/Main.hs"
+      component: "java-item-file-parser:exe:java-item-file-parser-exe"
+
+    - path: "./app/Paths_java_item_file_parser.hs"
+      component: "java-item-file-parser:exe:java-item-file-parser-exe"
+
+    - path: "./test"
+      component: "java-item-file-parser:test:java-item-file-parser-test"
+
+    - path: "./bench/Bench.hs"
+      component: "java-item-file-parser:bench:java-item-file-parser-bench"
+
+    - path: "./bench/Paths_java_item_file_parser.hs"
+      component: "java-item-file-parser:bench:java-item-file-parser-bench"
