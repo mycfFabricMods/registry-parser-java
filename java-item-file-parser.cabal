@@ -28,6 +28,8 @@ library
       ClassParser
       Common
       ItemParser
+      JunkParser
+      RegistryParser
   other-modules:
       Paths_java_item_file_parser
   hs-source-dirs:

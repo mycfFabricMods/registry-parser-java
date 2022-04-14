@@ -1,7 +1,8 @@
 {-# OPTIONS_GHC -Wno-name-shadowing #-}
 module ItemParser where
 
-import           Common                (Parser, Registerable (..))
+import           Common                (Parser, Registerable (..), parseF,
+                                        parseNew, parseP, parseS)
 import           Data.Functor          ((<&>))
 import           Data.Functor.Identity (Identity)
 import           Text.Parsec           (ParsecT)
@@ -17,32 +18,12 @@ data Item = Itm
 instance Registerable Item where
   parseRegister = fullItemParser
 
--- | parses a single public keyword
-parseP :: Parser u String
-parseP = Parsec.string "public"
-
--- | parses a single private keyword
-parsePri :: Parser u String
-parsePri = Parsec.string "private"
-
--- | parses a single static keyword
-parseS :: Parser u String
-parseS = Parsec.string "static"
-
--- | parses a single final keyword
-parseF :: Parser u String
-parseF = Parsec.string "final"
-
 -- | parses a single Item type
 parseItem :: Parser u String
 parseItem = Parsec.string "Item"
 
 parseBlock :: Parser u String
 parseBlock = Parsec.string "Block"
-
--- | parses the new keyword
-parseNew :: Parser u String
-parseNew = Parsec.string "new"
 
 -- | Parse the "public static final Item" part
 -- or "public static final Block" part
