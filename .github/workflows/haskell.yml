@@ -1,0 +1,30 @@
+name: Haskell CI
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: '**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '8.10.3'
+        enable-stack: true
+        stack-version: 'latest'
+
+    - name: Build
+      run: stack build
+    - name: Run tests
+      run: stack test
