@@ -1,0 +1,30 @@
+name: Haskell CI
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: '**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '9.2.2'
+        enable-stack: true
+        stack-version: 'latest'
+
+    - name: Build
+      run: stack build java-item-file-parser
+    - name: Run tests
+      run: stack test
